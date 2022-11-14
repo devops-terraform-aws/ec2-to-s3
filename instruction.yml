@@ -1,0 +1,31 @@
+# Creating ~/.aws/credentials
+step1: vi ~/.aws/credentials
+
+# if ~/.aws/credentials does not exist, create one
+do: mkidr ~/.aws
+    touch credentials
+then: do step1
+
+[default]
+aws_access_key_id = 
+aws_secret_access_key = 
+
+# Creating key-pair
+step1: ssh-keygen -m PEM
+
+step2: get private key and save to a file
+
+ cat ~/.ssh/id_rsa > mykey.pem
+
+step3: get public key and save to a file
+cat ~/.ssh/id_rsa.pub > public-key.pub
+
+
+step4: give only read permission to key
+chmod 400 myKey.pem
+
+# Bucket permission
+
+step1: Create an IAM EC2 Instance role for your EC2 instances.
+step2: Run your EC2 instances using that role.
+step3: Give this IAM role a policy to access the S3 bucket.
